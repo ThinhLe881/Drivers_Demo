@@ -1,3 +1,3 @@
 # Driver Demo
 
-Demo for software drivers
+Demo for hardware drivers
