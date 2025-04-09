@@ -1,3 +1,6 @@
 [submodule "TI_DRV8000"]
 	path = GDU/TI_DRV8000
 	url = https://github.com/ThinhLe881/TI_DRV8000.git
+[submodule "ENET/OA_SPI"]
+	path = ENET/OA_SPI
+	url = https://github.com/ThinhLe881/Open_Alliance_SPI.git
