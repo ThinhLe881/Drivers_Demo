@@ -31,7 +31,7 @@ static st_DRV8000_t gdu_drv8000;
 /* **********************************************************************/
 /* ***             Declaration of local functions                     ***/
 /* **********************************************************************/
-static uint8_t gpio_control(void* port,
+static uint8_t gpio_control(const void* port,
                             uint8_t pin,
                             uint8_t pin_level);
 
@@ -47,11 +47,12 @@ static void delay(uint16_t delay_us);
 /* ***            Definition of global functions                      ***/
 /* **********************************************************************/
 /* DRV8000 user-defined handler functions */
-uint8_t drv8000_spi_transceive(const uint8_t* tx_buffer,
-                                uint8_t* rx_buffer,
+uint8_t drv8000_spi_transceive(const void* spi_instance, 
+                                const uint8_t* tx_buffer, 
+                                uint8_t* rx_buffer, 
                                 const uint16_t len)
 {
-    return (uint8_t)(Lpspi_Ip_SyncTransmit(&GDU_DRV8000_SPI_INSTANCE,
+    return (uint8_t)(Lpspi_Ip_SyncTransmit(spi_instance,
                                             tx_buffer,
                                             rx_buffer,
                                             len,
@@ -67,8 +68,8 @@ uint8_t drv8000_pwm_set_dc(uint8_t instance,
                                                 duty_cycle));
 }
 
-uint8_t drv8000_gpio(void* port,
-                        uint8_t pin,
+uint8_t drv8000_gpio(const void* port, 
+                        uint8_t pin, 
                         uint8_t pin_level)
 {
     return gpio_control(port,
@@ -81,10 +82,11 @@ void drv8000_delay(uint16_t delay_us)
     delay(delay_us);
 }
 
-int gdu_drv8000_init(void)
+uint8_t gdu_drv8000_init(void)
 {
     en_DRV8000_STST_t ret;
 
+    gdu_drv8000.interface.spi_instance = GDU_DRV8000_SPI_INSTANCE;
     gdu_drv8000.interface.pwm_gd_in1_instance = GDU_DRV8000_PWM_GD_IN1_INSTANCE;
     gdu_drv8000.interface.pwm_gd_in1_channel = GDU_DRV8000_PWM_GD_IN1_CHANNEL;
     /* gdu_drv8000.interface.pwm_gd_in2_instance = GDU_DRV8000_PWM_GD_IN2_INSTANCE; */
@@ -169,14 +171,14 @@ int gdu_drv8000_init(void)
                                     WD_ENABLE);
     }
 
-    return ret;
+    return (uint8_t)ret;
 }
 
 
 /* **********************************************************************/
 /* ***             Definition of local functions                      ***/
 /* **********************************************************************/
-static uint8_t gpio_control(void* port,
+static uint8_t gpio_control(const void* port,
                             uint8_t pin,
                             uint8_t pin_level)
 {
