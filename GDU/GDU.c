@@ -8,6 +8,7 @@
 /* **********************************************************************/
 /* ***              System and library files included                 ***/
 /* **********************************************************************/
+#include "../HAL/HAL.h"
 #include "GDU.h"
 #include "TI_DRV8000/DRV8000.h"
 
@@ -171,6 +172,15 @@ uint8_t gdu_drv8000_init(void)
                                     WD_ENABLE);
     }
 
+    return (uint8_t)ret;
+}
+
+uint8_t gdu_drv8000_watchdog_trig(void)
+{
+    en_DRV8000_STST_t ret = 0u;
+    
+    ret = drv8000_wd_trig();
+    
     return (uint8_t)ret;
 }
 

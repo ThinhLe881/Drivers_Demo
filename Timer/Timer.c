@@ -15,10 +15,10 @@
 /* ***              Definition of local variables                     ***/
 /* **********************************************************************/
 static uint16_t TIMER_DURATIONS[N_TIMERS] = {
-        10,
-        70,
-        100,
-};
+												10,
+												70,
+												100,
+											};
 
 static Timer_t timers[N_TIMERS];
 

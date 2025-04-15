@@ -12,7 +12,6 @@
 /* **********************************************************************/
 /* ***              System and library files included                 ***/
 /* **********************************************************************/
-#include "../HAL/HAL.h"
 #include "TI_DRV8000/DRV8000.h"
 
 
@@ -53,6 +52,8 @@ typedef struct
 /* ***            Declaration of global functions                     ***/
 /* **********************************************************************/
 uint8_t gdu_drv8000_init(void);
+
+uint8_t gdu_drv8000_watchdog_trig(void);
 
 
 #endif /* GDU_GDU_H_ */
