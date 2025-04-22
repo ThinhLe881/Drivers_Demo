@@ -39,7 +39,7 @@ int main(void)
         /* Initialize scheduler timer */
         timer_system_init();
         /* Start RTI for scheduler timer */
-        Hal_Pit_StartChannel(PIT_INSTANCE_0, RTI, RTI_UPDATE_TICKS);
+        Hal_Pit_StartChannel(RTI_INSTANCE, RTI, RTI_UPDATE_TICKS);
     } else
     {
         return exit_code;

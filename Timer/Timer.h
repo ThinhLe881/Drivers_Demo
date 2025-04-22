@@ -18,7 +18,7 @@
 /* **********************************************************************/
 /* ***            Definition of global plain CONSTants                ***/
 /* **********************************************************************/
-#define PIT_INSTANCE_0                 	(0u)
+#define RTI_INSTANCE                 	(0u)
 #define RTI_UPDATE_TICKS               	(32u) /* 1ms - 32 kHz clock */
 #define N_TIMERS                        (3u)
 
